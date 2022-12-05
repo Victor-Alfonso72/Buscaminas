@@ -17,7 +17,7 @@ export class MainComponent implements OnInit {
   board: Board;
   minaLength : number = 0;
   cells : number = 10;
-  mines : number = 50;
+  mines : number = 10;
   constructor(
     public dialog: MatDialog,
     @Inject(DOCUMENT) private document: Document
