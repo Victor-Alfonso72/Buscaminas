@@ -1,0 +1,67 @@
+<style>
+    table {
+        background-color: yellow;
+        width: 100%;
+    }
+
+    table,
+    td {
+        border: 1px solid #fff;
+        border-collapse: collapse;
+    }
+
+    td {
+        text-align: center;
+        font-size: 120%;
+        color: #fff;
+        width: 32px;
+        height: 32px;
+    }
+</style>
+
+<div class="container container-app">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h2 class="title-game">BUSCA MINAS</h2>
+            <div class="row justify-content-between content-header">
+                <div class="col-4">
+                    <div class="details-games">
+                        <p>Celdas : {{cells}}x{{cells}} = {{cells*cells}}</p>
+                        <p>Número de minas a evadir : {{minaLength}}</p>
+                    </div>
+                </div>
+                <div class="col-4 content-settings">
+                    <mat-icon class="icon-settings" aria-hidden="false" (click)="initDialog()"
+                        aria-label="Example home icon">
+                        settings</mat-icon>
+                </div>
+            </div>
+
+
+            <table *ngIf="board != undefined">
+                <tr *ngFor="let row of board.cells; index as y">
+                    <td id="cell-{{y}}-{{x}}" *ngFor="let cell of row; index as x" (click)="checkCell(cell)"
+                        (contextmenu)="$event.preventDefault(); flag(cell)"
+                        [ngStyle]="{'background':cell.status === 'clear' ? '#348c6e' : '#3fb8b6' }">
+                        <!-- <div>Status: {{ cell.status }}</div> -->
+                        <div *ngIf="cell.status === 'clear' && !cell.mine">{{ cell.proximityMines !=0 ?
+                            cell.proximityMines
+                            : ''
+                            }}</div>
+                        <div *ngIf="cell.status === 'flag'">
+                            <mat-icon aria-hidden="false">tour</mat-icon>
+                        </div>
+                        <div *ngIf="cell.mine && cell.status === 'clear'">
+                            <mat-icon aria-hidden="false">support</mat-icon>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="restart">
+                <button class="button-restart" *ngIf="board != undefined" (click)="reset()" mat-raised-button
+                    color="primary">REINICIAR</button>
+            </div>
+        </div>
+    </div>
+</div>

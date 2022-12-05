@@ -1,0 +1,27 @@
+<form [formGroup]="configForm" (ngSubmit)="initGame()">
+    <h1 class="title-modal" mat-dialog-title>BUSAMINAS</h1>
+    <div class="content-modal" mat-dialog-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Dimensiones de celda</mat-label>
+            <input 
+            (keyup)="ValidateField($event)" 
+            formControlName="cellDimensions" 
+            matInput>
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+            <mat-label>Minas en el tablero</mat-label>
+            <input 
+            (keyup)="ValidateNminas($event);ValidateField2($event)" 
+            formControlName="mines" 
+            [disabled]="configForm.value.cellDimensions === '' " matInput>
+            <mat-hint *ngIf="validateNMinas">
+                Las minas no pueden ser superior a la mitad de las celdas
+            </mat-hint>
+        </mat-form-field>
+        
+    </div>
+    <div mat-dialog-actions align="end">
+        <button type="button" mat-raised-button color="warn" (click)="resetForm()" mat-button>REINICIAR FORMULARIO</button>
+        <button type="submit" mat-button mat-raised-button color="primary" cdkFocusInitial [disabled]="!configForm.valid || validateNMinas">JUGAR</button>
+    </div>
+</form>

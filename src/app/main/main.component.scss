@@ -1,0 +1,32 @@
+.title-game{
+    color: #fff;
+}
+.details-games{
+    color: #fff;
+}
+.content-header{
+    padding: 0px !important;
+    .content-settings{
+        padding: 0px !important;
+        text-align: right;
+    }
+    .icon-settings{
+        margin-top: 20px;
+        color: #fff;
+    }
+}
+
+.container-app{
+    margin-top: 20px;
+    .title-game{
+        text-align: center;
+    }
+
+    .restart{
+        margin-top: 16px;
+        padding: 0px !important;
+        .button-restart{
+            width: 100%;
+        }
+    }
+}
